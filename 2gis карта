@@ -1,0 +1,54 @@
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #f4f4f4;
+    }
+    .block {
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 35px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+    }
+    #map {
+      width: 100%;
+      height: 300px;
+      border-radius: 15px;
+    }
+  </style>
+  <script src="https://maps.api.2gis.ru/2.0/loader.js"></script>
+</head>
+<body>
+  <div class="block">
+    <h2>Карта 2ГИС</h2>
+    <p>Rich palace:</p>
+    <div id="map"></div>
+  </div>
+
+  <script>
+    // Инициализация карты
+    DG.then(function () {
+      const map = DG.map('map', {
+        center: [43.296405, 76.858997], // Координаты центра карты
+        zoom: 13 // Уровень масштаба
+      });
+
+      // Добавление маркера
+      const marker = DG.marker([43.296405, 76.858997])
+        .addTo(map)
+        .bindPopup('Бұл біздің той өтетін жер!');
+
+      // Открытие ссылки в 2ГИС при нажатии на маркер
+      marker.on('click', function () {
+        window.open('https://go.2gis.com/some-link', '_blank'); // Замените "some-link" на реальную ссылку в 2ГИС
+      });
+    });
+  </script>
